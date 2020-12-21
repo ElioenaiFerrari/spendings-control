@@ -16,6 +16,12 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    spendings: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: 'spendings',
+      },
+    ],
   },
   { timestamps: true }
 );

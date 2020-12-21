@@ -1,12 +1,20 @@
 import { request, response } from 'express';
+import User from '../users/User';
 import Spending from './Spending';
 
 class SpendingController {
-  async store({ body } = request, res = response, next) {
+  async store({ body, auth } = request, res = response, next) {
     try {
       const spending = await Spending.create(body);
+      const user = await User.findByIdAndUpdate(
+        auth.user._id,
+        { $push: { spendings: spending } },
+        { new: true }
+      );
 
-      return res.status(201).json(spending);
+      console.log(user);
+
+      return res.status(201).json(user);
     } catch ({ message }) {
       return res.status(400).json({ message });
     }
