@@ -7,4 +7,4 @@ router.post('/', SpendingController.store);
 router.get('/', SpendingController.index);
 router.get('/:id', SpendingController.show);
 
-export default (app = application) => app.use('/spendings', router);
+export default (app = application) => app.use('/app/spendings', router);

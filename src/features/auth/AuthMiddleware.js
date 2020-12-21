@@ -14,7 +14,7 @@ class AuthMiddleware {
 
       const user = Jwt.verify(token, SECRET);
 
-      req.user = user;
+      req.auth = user;
 
       next();
     } catch ({ message }) {
